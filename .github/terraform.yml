@@ -29,13 +29,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
 
-    # - name: Configure AWS credentials
-    #   uses: aws-actions/configure-aws-credentials@0e613a0980cbf65ed5b322eb7a1e075d28913a83
-    #   with:
-    #     aws-access-key-id: ${{ vars.AWS_ACCESS_KEY_ID }}
-    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-    #     aws-region: ${{ vars.AWS_REGION }}
-
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v3
