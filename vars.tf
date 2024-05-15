@@ -1,3 +1,7 @@
+variable "regionDefault" {
+  default = "us-east-1"
+}
+
 variable "accessConfig" {
   default = "API_AND_CONFIG_MAP"
 }
