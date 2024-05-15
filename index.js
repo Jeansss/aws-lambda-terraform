@@ -5,12 +5,12 @@ exports.handler = async (event) => {
   try {
     const userPoolId = await getUserPoolId();
     const clientId = await getClientId(userPoolId);
-    const username = event.username;
-    const password = event.password;
-    const newPassword = event.newPassword;
-    await createUser(userPoolId, username);
-    const auth = await authUser(clientId, userPoolId, username, password);
-    const respond = await respondChallenge(userPoolId, clientId, username, newPassword, auth.Session);
+    const cpf = event.cpf;
+    const password = "Test@123";
+    const newPassword = "Test@@@123";
+    await createUser(userPoolId, cpf);
+    const auth = await authUser(clientId, userPoolId, cpf, password);
+    const respond = await respondChallenge(userPoolId, clientId, cpf, newPassword, auth.Session);
     const token = respond.AuthenticationResult.IdToken;
     
     return {
@@ -46,10 +46,10 @@ async function getClientId(userPoolId) {
   }
 }
 
-async function createUser(userPoolId, username) {
+async function createUser(userPoolId, cpf) {
   const params = {
     UserPoolId: userPoolId,
-    Username: username,
+    Username: cpf,
     ForceAliasCreation: false,
     TemporaryPassword: "Test@123",
   };
@@ -62,14 +62,14 @@ async function createUser(userPoolId, username) {
   }
 }
 
-async function respondChallenge(userPoolId, clientId, username, newPassword, session) {
+async function respondChallenge(userPoolId, clientId, cpf, newPassword, session) {
   const params = {
     ChallengeName: "NEW_PASSWORD_REQUIRED",
     ClientId: clientId,
     UserPoolId: userPoolId,
     ChallengeResponses: {
       NEW_PASSWORD: newPassword,
-      USERNAME: username,
+      USERNAME: cpf,
     },
     Session: session
   };
@@ -83,13 +83,13 @@ async function respondChallenge(userPoolId, clientId, username, newPassword, ses
   }
 }
 
-async function authUser(clientId, userPoolId, username, password) {
+async function authUser(clientId, userPoolId, cpf, password) {
   const params = {
     AuthFlow: "ADMIN_NO_SRP_AUTH",
     ClientId: clientId,
     UserPoolId: userPoolId,
     AuthParameters: {
-      USERNAME: username,
+      USERNAME: cpf,
       PASSWORD: password,
     }
   };

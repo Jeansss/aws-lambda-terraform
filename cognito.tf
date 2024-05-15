@@ -18,6 +18,6 @@ resource "aws_cognito_user_pool_client" "client" {
 
 resource "aws_cognito_user" "example" {
   user_pool_id = aws_cognito_user_pool.pool.id
-  username = "sumeet.n"
+  username = "19100000000"
   password = "Test@123"
 }
