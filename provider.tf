@@ -1,8 +1,5 @@
 terraform {
   required_providers {
-    mongodbatlas = {
-      source = "mongodb/mongodbatlas"
-    }
     aws = {
       source = "hashicorp/aws"
     }
@@ -14,7 +11,7 @@ terraform {
     organization = "Postech-YJ"
 
     workspaces {
-      name = "amazon-eks"
+      name = "aws-lambda"
     }
   }
 }
