@@ -48,7 +48,7 @@ resource "aws_api_gateway_integration" "eks_integration" {
   http_method             = aws_api_gateway_method.order_manager.http_method
   integration_http_method = "ANY"
   type                    = "HTTP_PROXY"
-  uri                     = "http://ad0ee343d6f6241fbaa68365bf02077c-838325891.us-east-1.elb.amazonaws.com/{proxy}"
+  uri                     = "http://aad4bf322eed94953a356a78040a5123-1547165229.us-east-1.elb.amazonaws.com/{proxy}"
     request_parameters = {
     "integration.request.path.proxy" = "method.request.path.proxy"
   }
